@@ -8,8 +8,8 @@ const Login = () => {
     //Two way binding
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log(`Email is ${email}`);
-        console.log(`Password is ${password}`);
+        // console.log(`Email is ${email}`);
+        // console.log(`Password is ${password}`);
 
         setEmail("");
         setPassword("");
