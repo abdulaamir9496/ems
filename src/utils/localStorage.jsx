@@ -197,29 +197,40 @@ const admin = {
         "password": "123"
 };
 
+export const setLocalStorage = () => {
+    localStorage.setItem('employees', JSON.stringify(employees))
+    localStorage.setItem('admin', JSON.stringify(admin))
+}
+
+export const getLocalStorage = () => {
+    const employees = JSON.parse(localStorage.getItem('employees'))
+    const admin = JSON.parse(localStorage.getItem('admin'))
+
+    return {employees, admin}
+}
 
 // Set data in localStorage
-export const setLocalStorage = () => {
-    localStorage.setItem('employees', JSON.stringify(employees));
-    localStorage.setItem('admin', JSON.stringify(admin));
-    console.log("Data successfully stored in localStorage.");
-};
+// export const setLocalStorage = () => {
+//     localStorage.setItem('employees', JSON.stringify(employees));
+//     localStorage.setItem('admin', JSON.stringify(admin));
+//     console.log("Data successfully stored in localStorage.");
+// };
 
 // Get data from localStorage
-export const getLocalStorage = () => {
-    const employeesData = JSON.parse(localStorage.getItem('employees'));
-    const adminData = JSON.parse(localStorage.getItem('admin'));
+// export const getLocalStorage = () => {
+//     const employeesData = JSON.parse(localStorage.getItem('employees'));
+//     const adminData = JSON.parse(localStorage.getItem('admin'));
 
-    if (!employeesData || !adminData) {
-        console.error("Data not found in localStorage. Did you run setLocalStorage()?");
-        return;
-    }
+//     if (!employeesData || !adminData) {
+//         console.error("Data not found in localStorage. Did you run setLocalStorage()?");
+//         return;
+//     }
 
-    console.log("Employees Data:", employeesData);
-    console.log("Admin Data:", adminData);
-};
+//     console.log("Employees Data:", employeesData);
+//     console.log("Admin Data:", adminData);
+// };
 
 // Run the functions in the correct order
-setLocalStorage();
-getLocalStorage();
+// setLocalStorage();
+// getLocalStorage();
 

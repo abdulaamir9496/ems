@@ -9,6 +9,17 @@ const App = () => {
 
   const [user, setUser] = useState(null);
 
+    //using AuthProvider context 
+    const authData = useContext(AuthContext)
+    // console.log(authData.employees)
+
+    //To known who is logged in ?
+    useEffect(() => {   
+      if(authData) {
+        const loggedInUser = localStorage.getItem("loggedInUser")
+      }
+    }, [authData]);
+
   //Handle login checks if email and password are valid before sending email 
   // to the server and updating the password field with the new password field 
   // when the user is logged in and the password field is updated accordingly.
@@ -16,11 +27,14 @@ const App = () => {
     if(email == 'admin@example.com' && password == '123') {
       // console.log('This is Admin')
       setUser('admin')
+      localStorage.setItem('loggedInUser', JSON.stringify({role:'admin'}))
       // console.log(user);
-    } else if(email == 'employee1@example.com' && password == '123') {
+    // } else if(email == 'employee1@example.com' && password == '123') {
+      } else if(authData && authData.employees.find((e) => email == e.email && password == e.password)) {     //find the email, password as provided else return Invalid Credentials
       // console.log('This is User')
       setUser('employee')
       // console.log(user)
+      localStorage.setItem('loggedInUser', JSON.stringify({role:'employee'}))
     } else {
       alert('Invalid Credentials')
     }
@@ -32,10 +46,6 @@ const App = () => {
   //   // setLocalStorage()   //For setting the data
   //   // getLocalStorage()     //For getting the
   // },)
-
-  //using AuthProvider context 
-  const data = useContext(AuthContext)
-  console.log(data)
 
   return (
     <>
