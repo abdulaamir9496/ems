@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-const Login = () => {
+const Login = ({handleLogin}) => {
+
+    // console.log(handleLogin)
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -8,6 +10,7 @@ const Login = () => {
     //Two way binding
     const submitHandler = (e) => {
         e.preventDefault()
+        handleLogin(email, password)   //It's like from child we are passing data to parent
         // console.log(`Email is ${email}`);
         // console.log(`Password is ${password}`);
 
